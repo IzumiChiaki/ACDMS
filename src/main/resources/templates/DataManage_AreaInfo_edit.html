@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="renderer" content="webkit"/>
+    <title>大气腐蚀数据管理系统</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/subcon.css}"/>
+    <link rel="stylesheet" th:href="@{/scss/main.css}"/>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5.js}"  type="text/javascript"></script>
+    <![endif]-->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/choose.js}"></script>
+    <script type="text/javascript" th:src="@{/js/comm.js}"></script>
+    <script type="text/javascript" th:src="@{js/jq.js}"></script>
+</head>
+
+<body>
+<!--header开始-->
+<header class="header">
+    <section class="top1">
+        <div class="top1_w pr">
+            <div class="mbtn"><img th:src="@{/images/nav.jpg/}"/></div>
+            <div class="top1_lf pa"><a href="http://www.ustb.edu.cn/">学校主页</a><a href="http://saee.ustb.edu.cn/">学院主页</a></div>
+            <div class="search" align="right" th:style="'margin-left: -265px;'">
+                <form role="form" name="form" th:action="@{/logout}" method="post">
+                    <div>
+                        <label>您的身份是：管理员</label>
+                        <input type="submit" value="注销" onclick="return wc();" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="navm">
+        <ul>
+            <li><a th:href="@{/Homepage}">首页</a></li>
+            <li class="sub_has"><a href="javascript:;">系统概述<span><img th:src="@{/images/snav_icon1.png}"/></span></a>
+                <dl>
+                    <dd><a th:href="@{/SysIntroduction}">系统介绍</a></dd>
+                    <dd><a th:href="@{/SysFrame}">系统结构</a></dd>
+                    <dd><a th:href="@{/SysFunction}">系统功能</a></dd>
+                    <dd><a th:href="@{/SysSense}">系统意义</a></dd>
+                </dl>
+            </li>
+
+            <li class="sub_has"><a href="javascript:;">数据查询<span><img th:src="@{/images/snav_icon1.png}"/></span></a>
+                <dl>
+                    <dd><a th:href="@{/LocationInfo}">地点信息</a></dd>
+                    <dd><a th:href="@{/AreaInfo}">区域信息</a></dd>
+                    <dd><a th:href="@{/DeviceInfo}">设备信息</a></dd>
+                    <dd><a th:href="@{/ProbeInfo}">探针信息</a></dd>
+                    <dd><a th:href="@{/CorrosionInfo}">腐蚀信息</a></dd>
+                </dl>
+            </li>
+
+            <li class="sub_has"><a href="javascript:;">数据管理<span><img th:src="@{/images/snav_icon1.png}"/></span></a>
+                <dl>
+                    <dd><a th:href="@{/DataManage_LocationName}">地点信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_AreaName}">区域信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_DeviceInfo}">设备信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_ProbeInfo}">探针信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_CorrosionInfo}">腐蚀信息管理</a></dd>
+                </dl>
+            </li>
+            <li><a href="#">ISO标准</a></li>
+            <li><a href="#">联机帮助</a></li>
+
+            <!--li class="sub_has"><a href="javascript:;">ISO标准<span><img th:src="@{/images/snav_icon1.png}"/></span></a>
+                <dl>
+                    <dd><a href="#">数据地图</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                </dl>
+            </li>
+
+            <li class="sub_has"><a href="javascript:;">联机帮助<span><img th:src="@{/images/snav_icon1.png}"/></span></a>
+                <dl>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                </dl>
+            </li-->
+        </ul>
+    </div>
+    <section class="top2">
+        <div class="top2_w pr">
+            <div class="logo"><a href="#"><img th:src="@{/images/logo5.png}"/></a></div>
+        </div>
+    </section>
+    <nav class="nav" id="nav">
+        <ul>
+            <li><div><a th:href="@{/Homepage}">首页</a></div></li>
+            <li>
+                <div><a href="#">系统概述</a></div>
+                <dl>
+                    <dd><a th:href="@{/SysIntroduction}">系统介绍</a></dd>
+                    <dd><a th:href="@{/SysFrame}">系统结构</a></dd>
+                    <dd><a th:href="@{/SysFunction}">系统功能</a></dd>
+                    <dd><a th:href="@{/SysSense}">系统意义</a></dd>
+                </dl>
+            </li>
+            <li>
+                <div><a href="#">数据查询</a></div>
+                <dl>
+                    <dd><a th:href="@{/LocationInfo}">地点信息</a></dd>
+                    <dd><a th:href="@{/AreaInfo}">区域信息</a></dd>
+                    <dd><a th:href="@{/DeviceInfo}">设备信息</a></dd>
+                    <dd><a th:href="@{/ProbeInfo}">探针信息</a></dd>
+                    <dd><a th:href="@{/CorrosionInfo}">腐蚀信息</a></dd>
+                </dl>
+            </li>
+            <li>
+                <div><a href="#">数据管理</a></div>
+                <dl>
+                    <dd><a th:href="@{/DataManage_LocationName}">地点信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_AreaName}">区域信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_DeviceInfo}">设备信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_ProbeInfo}">探针信息管理</a></dd>
+                    <dd><a th:href="@{/DataManage_CorrosionInfo}">腐蚀信息管理</a></dd>
+                </dl>
+            </li>
+            <li>
+                <div><a href="#">ISO标准</a></div>
+                <!--dl>
+                    <dd><a href="#">数据地图</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                </dl-->
+            </li>
+            <li>
+                <div><a href="#">联机帮助</a></div>
+                <!--dl>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                    <dd><a href="#">二级栏目</a></dd>
+                </dl-->
+            </li>
+        </ul>
+    </nav>
+</header>
+<!--header结束 -->
+<div class="wraq_content">
+    <div class="wraq_pg">
+        <div class="page_banner" th:style="'background-image:url('+ @{/images/page_banner3.jpg} +');'"></div>
+        <div class="page_main">
+            <div class="page_con">
+                <div class="pg_rt">
+                    <div class="menu">
+                        <div class="menu_tit"><h2>区域信息管理</h2></div>
+                        <ul>
+                            <li class=""><a th:href="@{/DataManage_AreaName}">区域名称信息管理</a></li>
+                            <li class="active"><a th:href="@{/DataManage_AreaInfo}">区域天气信息管理</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pg_lf">
+                    <div class="pg_lf_main">
+                        <div class="pg_rt_tit">
+                            <div class="Bread">
+                                <a th:href="@{/Homepage}">首页</a> / <a th:href="@{/DataManage_AreaName}">数据管理</a> / <a th:href="@{/DataManage_AreaInfo}">区域天气信息管理</a>
+                            </div>
+                            <h2>区域天气信息管理</h2>
+                        </div>
+                        <div class="pg_rt_con">
+                            <div class="news_list">
+                                <ul>
+                                    <li>
+                                        <!-- Update Alert Messages -->
+                                        <div th:if="${saveAreaData eq 'unsuccess'}">
+                                            <div class="msg-info-unsuccess" role="alert">
+                                                <h4>错误!区域数据未保存！</h4>
+                                            </div>
+                                        </div>
+                                        <div th:if="${saveAreaData eq 'success'}">
+                                            <div class="msg-info-success" role="alert">
+                                                <h4>成功!区域数据成功保存！</h4>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <form th:object="${editAreaData}" th:action="@{/DataManage_AreaInfo/save}" style="margin-left: 15px" action="#" method="post" autocomplete="off">
+                                                <input type="hidden" th:field="*{aid}"/>
+                                                <h3 class="panel-title">更新区域天气信息</h3>
+                                                <table class="table4_7">
+                                                    <tr><td><label>区域名称</label></td></tr>
+                                                    <tr><td><input type="text" th:field="*{areaName}" placeholder="区域名称"/></td></tr>
+                                                    <tr><td><label>日期</label></td></tr>
+                                                    <tr><td><input type="text" onfocus="(this.type='date')" th:field="*{date}" placeholder="日期"/></td></tr>
+                                                    <tr><td><label>温度</label></td></tr>
+                                                    <tr><td><input type="text" th:field="*{areaTemp}" placeholder="温度"/></td></tr>
+                                                    <tr><td><label>湿度</label></td></tr>
+                                                    <tr><td><input type="text" th:field="*{areaHumidity}" placeholder="湿度"/></td></tr>
+                                                    <tr><td><label>O3含量</label></td></tr>
+                                                    <tr><td><input type="text" th:field="*{areaO3}" placeholder="O3含量"/></td></tr>
+                                                    <tr><td><label>SO2含量</label></td></tr>
+                                                    <tr><td><input type="text" th:field="*{areaSO2}" placeholder="SO2含量"/></td></tr>
+                                                    <tr><td><label>PM2.5含量</label></td></tr>
+                                                    <tr><td><input type="text" th:field="*{areaPM25}" placeholder="PM2.5含量"/></td></tr>
+                                                    <tr><td><label>AQI</label></td></tr>
+                                                    <tr><td><input type="text" th:field="*{areaAQI}" placeholder="AQI"/></td></tr>
+                                                </table>
+                                                <div class="update">
+                                                    <input class="btn1_2" type="submit" value="更新"/>
+                                                </div>
+                                                <div class="back">
+                                                    <a class="btn1_1" th:href="@{/DataManage_AreaInfo}">返回</a>&nbsp;&nbsp;
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<article class="footer_W">
+    <div class="footer">
+        <div class="footer_mr">
+            <div class="footer_lf">
+                <div class="footer_text">
+                    <span>版权所有 © 北京科技大学自动化学院&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span>地址：北京市海淀区学院路30号&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span>邮编：100083&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span>今日访问量 10000 位</span>
+                </div>
+            </div>
+            <div class="footer_rt">
+                <div class="download">
+                    <a href="#"><img th:src="@{/images/download.jpg}"/></a>
+                </div>
+                <div class="weixin">
+                    <img th:src="@{/images/weixin.jpg}"/>
+                    <span>官方<br>微信</br></span>
+                </div>
+                <div class="weixin">
+                    <img th:src="@{/images/weixin.jpg}"/>
+                    <span>官方<br>微信</br></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script type="text/javascript" th:src="@{/js/jquery-1.9.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.flexslider-min.js}"></script>
+
+<!-- 焦点图切换JS -->
+<script th:src="@{/js/responsiveslides.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/content.js}"></script>
+
+
+<script type="text/javascript">
+    Menu('.mbtn','.navm');
+    nav();  //下拉菜单
+
+    $(function () {
+        $("#slider").responsiveSlides({
+            auto: true,
+            pager: false,
+            timeout: 6000,
+            nav: true,
+            speed: 500,
+            pager:true,
+            // 对应外层div的class : slide_container
+            namespace: "slide"
+        });
+    });
+</script>
+</body>
+</html>
